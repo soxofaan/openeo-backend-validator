@@ -48,3 +48,18 @@ Example usage with the example `gee_config.toml` config file:
 The output is a JSON object that contains "VALID" for every endpoint that is valid against the openapi specification and an error message with further information for every endpoint that does not match the specification. 
 
 Feel free to add an issue if you ran into problems, but please look first into the existing ones.
+
+
+## Docker based usage
+
+There is also a DockerFile for Docker based building and usage.
+
+For example, start with building the docker image:
+
+    docker build -t openeoct .
+
+Then you can use this image to run the validator tool as in the following example.
+Note that you have to mount the desired config TOML file explicitly into the container
+(by default `/openeoct/config.toml` will be read by the validator tool):
+
+    docker run --rm -it -v $PWD/gee_config.toml:/openeoct/config.toml  openeoct
